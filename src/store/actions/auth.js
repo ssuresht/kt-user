@@ -1,7 +1,0 @@
-export const AUTH_REQUEST = 'AUTH_REQUEST'
-export const AUTH_SUCCESS = 'AUTH_SUCCESS'
-export const AUTH_ERROR = 'AUTH_ERROR'
-export const AUTH_LOGOUT = 'AUTH_LOGOUT'
-export const AUTH_FORGOT = 'AUTH_FORGOT'
-export const AUTH_RESET = 'AUTH_RESET'
-export const AUTH_SEND_SIGNUP_EMAIL = 'AUTH_SEND_SIGNUP_EMAIL'

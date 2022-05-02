@@ -1,2 +1,0 @@
-export const GET_ALL_MEDIA = "GET_ALL_MEDIA";
-export const GET_ALL_MEDIA_SUCCESS = "GET_ALL_MEDIA_SUCCESS";

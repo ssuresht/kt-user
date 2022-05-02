@@ -24,7 +24,7 @@
 		</div>
 		<div class="container-width mx-auto">
 			<validation-observer ref="basicInformationInput">
-				<v-form @submit.prevent="updateBasicInformation">
+				<v-form ref="contactForm" @submit.prevent="updateBasicInformation">
 					<basic-information-input :class="{'mt-10': $vuetify.breakpoint.smAndUp, 'mt-5': $vuetify.breakpoint.xs}" :fields="fields" />
 					<div class="d-flex justify-center mt-6">
 						<v-btn
@@ -77,6 +77,24 @@ export default {
 				if (!success) {
 					return;
 				}
+
+			let data = {};
+			this.fields.forEach(field => {
+				if (field) {
+					if (field.value) {
+					data[field.name] = field.value;
+					}
+				}
+			});
+
+			this.$store
+				.dispatch("CONTACT_SUBMIT", data)
+				.then(() => {
+					this.$refs.contactForm.reset();
+				})
+				.finally(() => {
+					this.loading = false;
+				});
 			});
 		},
 		getAutoSuggestionText(item) {

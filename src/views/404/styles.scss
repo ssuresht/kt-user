@@ -1,0 +1,26 @@
+.desktop-cover{
+    top: 0;
+    right: 0;
+    height: 100%;
+    z-index: 0;
+}
+.phone-cover{
+    z-index: 1;
+}
+.theme--light.v-btn {
+    color: #13aba3;
+}
+.v-icon.v-icon{
+    font-size: 22px !important;
+    margin-top: -3px;
+}
+.mobile_404{
+    max-width: 216px;
+    max-height: 154px;
+}
+.mt-10-reverse{
+    margin-top: -25px;
+    @media(max-width: 600px){
+        margin-top: -20px;
+    }
+}

@@ -1,0 +1,4 @@
+export const GET_ALL_MEDIA = "GET_ALL_MEDIA";
+export const GET_ALL_MEDIA_SUCCESS = "GET_ALL_MEDIA_SUCCESS";
+export const GET_MEDIA = "GET_MEDIA";
+export const GET_MEDIA_SUCCESS = "GET_MEDIA_SUCCESS";

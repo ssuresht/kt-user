@@ -1,0 +1,120 @@
+.main-div {
+  background: #f9f9f9 !important;
+  .image-margin-mobile {
+    margin-top: 78px;
+  }
+  .image-margin-desktop {
+    margin-top: 100px;
+  }
+  .main-title{
+    font-size: inherit;
+  }
+  .sub-title{
+    font-size: inherit;
+  }
+  .white-card {
+    border-radius: 5px !important;
+  }
+  .about-mobile {
+    margin-top: 100px;
+    padding-bottom: 24px !important;
+  }
+  .about-desktop {
+    margin-top: 90px;
+    padding-bottom: 20px !important;
+  }
+  .public-notice-mobile {
+    margin-top: 68px;
+    padding-bottom: 24px !important;
+  }
+  .public-notice-desktop {
+    margin-top: 90px;
+    padding-bottom: 21px !important;
+  }
+
+  .underline-desktop-margin {
+    margin-right: 180px;
+  }
+  .underline-mobile-margin {
+    margin-right: 120px;
+  }
+  .underline-long-desktop-margin {
+    margin-right: 360px;
+  }
+  .underline-long-mobile-margin {
+    margin-right: 230px;
+  }
+
+  .about-description-mobile {
+    margin: 0 4% 0 4%;
+  }
+  .about-description-desktop {
+    margin: 0 31.5% 0 31.5%;
+  }
+  .operating-company-mobile {
+    margin-top: 66px;
+    padding-bottom: 25px !important;
+  }
+  .operating-company-desktop {
+    margin-top: 98px;
+    padding-bottom: 31px !important;
+  }
+  .table-card-mobile {
+    border-radius: 0px !important;
+    border-bottom: none !important;
+  }
+  .table-card {
+    border-radius: 12px;
+    margin-bottom: 70px;
+    .blue-col-desktop {
+      background-color: #e4f5f5 !important;
+      height: 73px !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .blue-col-desktop-first {
+      border-top-left-radius: 12px !important;
+    }
+    .blue-col-desktop-last {
+      border-bottom-left-radius: 12px !important;
+    }
+    .blue-col-desktop-except-last {
+      border-bottom: 1px solid #e5e5e5 !important;
+    }
+    .blue-col-mobile {
+      background-color: #e4f5f5 !important;
+      height: 47px !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .white-col-desktop {
+      background-color: #fff;
+      min-height: 73px !important;
+      display: flex;
+      align-items: center;
+    }
+    .white-col-desktop-except-last {
+      border-bottom: 1px solid #e5e5e5 !important;
+    }
+    .white-col-mobile {
+      min-height: 47px !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  .white-col-long-text{
+      min-height: 65px !important;
+display: flex;
+justify-content: center;
+align-items: center;
+
+    }
+ 
+  }
+  .anchor {
+    text-decoration: none !important;
+    color: #0f8abe !important;
+  }
+}

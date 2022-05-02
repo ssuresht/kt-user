@@ -1,0 +1,47 @@
+@import "~vuetify/src/styles/settings/_colors.scss";
+
+// Colors //
+$secondary: #525252;
+$error: #790000;
+$warning: #ffad32;
+$success: #0b8c00;
+$info: #0094ff;
+$text-color: #6e6e6e;
+$text-grey: #b9b9b9;
+$title-grey: #4a4a4a;
+$icon-grey: #0000008a;
+$primary: () !default;
+$primary: map-deep-merge(
+  (
+    "base": #13aba3,
+    "lighten-1": #28afa6eb,
+    "lighten-2": #228d88,
+    "lighten-3": #e4f5f5,
+    "lighten-4": #eafcf8,
+  ),
+  $primary
+);
+$background: #f9f9f9;
+$colors: map-deep-merge(
+  (
+    "primary": $primary,
+    "background": $background
+  ),
+  $colors
+);
+// Typography //
+// $h1-font-size: 3rem !default; // 28px
+// $h2-font-size: 2rem !default; // 24px
+// $h3-font-size: 1.64rem !default; // 22px
+// $h4-font-size: 1.5rem !default; // 20px
+// $h5-font-size: 1.285rem !default; // 16px
+// $h6-font-size: 1.142rem !default; // 14px
+
+$card-border-radius: 12px !default;
+$btn-border-radius: 30px !default;
+$card-title-text-color: #1f2020;
+$card-subtitle-text-color: #8e8e8e;
+
+$text-field-rounded-border-radius: 30px;
+$text-field-outlined-fieldset-border: 1px solid #e5e5e5;
+$text-field-border-radius: 30px;

@@ -1,0 +1,458 @@
+@use "sass:map";
+@font-face {
+  font-family: "NotoSansJP-Bold";
+  src: url("~@/assets/fonts/Noto_Sans_JP/NotoSansJP-Bold.otf");
+}
+@font-face {
+  font-family: "NotoSansJP-Light";
+  src: url("~@/assets/fonts/Noto_Sans_JP/NotoSansJP-Light.otf");
+}
+@font-face {
+  font-family: "NotoSansJP-Medium";
+  src: url("~@/assets/fonts/Noto_Sans_JP/NotoSansJP-Medium.otf");
+}
+@font-face {
+  font-family: "NotoSansJP-Regular";
+  src: url("~@/assets/fonts/Noto_Sans_JP/NotoSansJP-Regular.otf");
+}
+@font-face {
+  font-family: "Roboto-Bold";
+  src: url("~@/assets/fonts/Roboto/Roboto-Bold.ttf");
+}
+@font-face {
+  font-family: "Roboto-Light";
+  src: url("~@/assets/fonts/Roboto/Roboto-Light.ttf");
+}
+@font-face {
+  font-family: "Roboto-Medium";
+  src: url("~@/assets/fonts/Roboto/Roboto-Medium.ttf");
+}
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url("~@/assets/fonts/Roboto/Roboto-Regular.ttf");
+}
+@font-face {
+  font-family: "Reem Kufi Medium";
+  src: url("~@/assets/fonts/Reem_kufi/ReemKufi-Medium.ttf");
+}
+@font-face {
+  font-family: "Poppins-SemiBold";
+  src: url("~@/assets/fonts/Poppins/Poppins-SemiBold.ttf");
+}
+.v-application {
+  font-family: "NotoSansJP-Regular";
+  .mouse-pointer:hover {
+    cursor: pointer;
+  }
+  .full-height {
+    height: 100%;
+  }
+  .bg-e5e5e5 {
+    background-color: #e5e5e5 !important;
+  }
+  .position-absolute {
+    position: absolute;
+  }
+  .position-relative {
+    position: relative;
+  }
+  .font-reem-kufi-medium {
+    font-family: "Reem Kufi Medium";
+  }
+  .font-Poppins-SemiBold {
+    font-family: "Poppins-SemiBold";
+    font-weight: 600;
+  }
+  .font-Noto-Sans {
+    font-family: "NotoSansJP-Regular";
+    font-weight: 500;
+  }
+  .font-Noto-Sans-Bold {
+    font-family: "NotoSansJP-Bold";
+    font-weight: 900;
+  }
+  .font-Noto-Sans-Medium {
+    font-family: "NotoSansJP-Medium";
+    font-weight: 500;
+  }
+  .font-Noto-Sans-Light {
+    font-family: "NotoSansJP-Light";
+    font-weight: 400;
+  }
+  .font-Roboto {
+    font-family: "Roboto-Regular" !important;
+    font-weight: 500;
+  }
+  .font-Roboto-Bold {
+    font-family: "Roboto-Bold" !important;
+    font-weight: 900;
+  }
+  .font-Roboto-Medium {
+    font-family: "Roboto-Medium" !important;
+    font-weight: 500;
+  }
+  .font-Roboto-Light {
+    font-family: "Roboto-Light";
+    font-weight: 400;
+  }
+  .fw-900 {
+    font-weight: 900 !important;
+  }
+  .fw-800 {
+    font-weight: 800 !important;
+  }
+  .fw-700 {
+    font-weight: 700 !important;
+  }
+  .fw-600 {
+    font-weight: 600 !important;
+  }
+  .fw-500 {
+    font-weight: 500 !important;
+  }
+  .fw-400 {
+    font-weight: 400 !important;
+  }
+  .font-8px {
+    font-size: 8px !important;
+  }
+  .font-9px {
+    font-size: 9px !important;
+  }
+  .font-10px {
+    font-size: 10px !important;
+  }
+  .font-11px {
+    font-size: 11px !important;
+  }
+  .font-12px {
+    font-size: 12px !important;
+  }
+  .font-13px {
+    font-size: 13px !important;
+  }
+  .font-14px {
+    font-size: 14px !important;
+  }
+  .font-15px {
+    font-size: 14px !important;
+  }
+  .font-16px {
+    font-size: 16px !important;
+  }
+  .font-18px {
+    font-size: 18px !important;
+  }
+  .font-20px {
+    font-size: 20px !important;
+  }
+  .font-22px {
+    font-size: 22px !important;
+  }
+  .font-24px {
+    font-size: 24px !important;
+  }
+  .font-25px {
+    font-size: 25px !important;
+  }
+  .font-28px {
+    font-size: 28px !important;
+  }
+  .font-30px {
+    font-size: 30px !important;
+  }
+  .font-32px {
+    font-size: 32px !important;
+  }
+  .font-36px {
+    font-size: 36px !important;
+  }
+  .font-38px {
+    font-size: 38px !important;
+  }
+  .font-40px {
+    font-size: 40px !important;
+  }
+  .font-38px {
+    font-size: 38px !important;
+  }
+  .font-48px {
+    font-size: 48px !important;
+  }
+  .font-88px {
+    font-size: 83px !important;
+  }
+  .font-75px {
+    font-size: 75px !important;
+  }
+
+  .truncate-lines {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    &.lines-1 {
+      -webkit-line-clamp: 1;
+    }
+    &.lines-2 {
+      -webkit-line-clamp: 2;
+    }
+    &.lines-3 {
+      -webkit-line-clamp: 3;
+    }
+    &.lines-4 {
+      -webkit-line-clamp: 4;
+    }
+    &.lines-5 {
+      -webkit-line-clamp: 5;
+    }
+  }
+  .page-title {
+    font-size: 2.4rem;
+    color: $text-grey;
+    margin-bottom: 0;
+  }
+.v-pagination {
+    .v-pagination__navigation {
+      box-shadow: none !important;
+  }
+  .v-pagination__item {
+    box-shadow: none !important;
+    margin: 0px 4px !important;
+   
+  }
+  .v-pagination__more {
+    background-color: white !important;
+    padding-bottom: 10px;
+  }
+}
+
+
+  .v-card {
+    border-radius: $card-border-radius;
+    .v-card__title {
+      color: $card-title-text-color !important;
+      line-height: 20.27px;
+    }
+    .v-card__subtitle {
+      color: $card-subtitle-text-color;
+      line-height: 20.27px;
+    }
+  }
+  .v-btn {
+    border-radius: $btn-border-radius;
+  }
+  .v-navigation-drawer {
+    .v-navigation-drawer__content {
+      .v-list {
+        .v-list-item--active {
+          background-color: #f3f5ff;
+          &:before {
+            opacity: 0;
+          }
+        }
+        .v-list-item:hover {
+          background-color: #f3f5ff;
+          &:before {
+            opacity: 0;
+          }
+        }
+      }
+    }
+  }
+}
+.mapContainer + footer.v-footer {
+  display: none;
+}
+
+.toasted-container {
+  .toasted {
+    height: 50px !important;
+    box-shadow: none;
+
+    &.error {
+      background: $error !important;
+    }
+
+    &.success {
+      background: $success !important;
+    }
+
+    &.warning {
+      background: $warning !important;
+    }
+
+    .action {
+      color: $text-color;
+    }
+  }
+}
+.no-box-shadow {
+  box-shadow: none !important;
+}
+.border-primary {
+  border-color: map.get($primary, "base") !important;
+}
+.main--text {
+  color: #525252;
+}
+.px-17 {
+  padding-left: 68px !important;
+  padding-right: 68px !important;
+}
+.mx-17 {
+  margin-left: 68px !important;
+  margin-right: 68px !important;
+}
+.mb-17 {
+  margin-bottom: 68px;
+}
+.pb-17 {
+  padding-bottom: 68px;
+}
+.px-20{
+  padding-left: 80px !important;
+  padding-right: 80px !important;
+}
+.font-64px {
+  font-size: 64px !important;
+  line-height: 88px !important;
+}
+.font-96px{
+  font-size: 96px !important;
+}
+.text-777777 {
+  color: #777777 !important;
+}
+.text-1f2020 {
+  color: #1f2020 !important;
+}
+.text-747474 {
+  color: #747474 !important;
+}
+.text-fff {
+  color: #fff !important;
+}
+.text-c1 {
+  color: #c1c1c1 !important;
+}
+.text-9b {
+  color: #9b9b9b !important;
+}
+.text-97 {
+  color: #979797 !important;
+}
+.text-52 {
+  color: #525252 !important;
+}
+.text-58 {
+  color: #585858 !important;
+}
+.text-999 {
+  color: #999 !important;
+}
+.text-9b {
+  color: #9b9b9b !important;
+}
+.text-red {
+  color: #d65858 !important;
+}
+.text-green {
+  color: #00c5a1 !important;
+}
+.text-bbb {
+  color: #bbbbbb !important;
+}
+.text-a1 {
+  color: #a1a1a1 !important;
+}
+.text-light-blue {
+  color: #0094ff !important;
+}
+.text-light-grey {
+  color: #6e6b7b !important;
+}
+.text-light-grey-2 {
+  color: #6e7474 !important;
+}
+.text-primary {
+  color: #13aba3 !important;
+}
+.text-light-green {
+  color: #92ffff !important;
+}
+.text-purple {
+  color: #aa158b !important;
+}
+.text-8e {
+  color: $card-subtitle-text-color !important;
+}
+.text-pink {
+  color: #f4326d !important;
+}
+.text-light-red {
+  color: #f1575f !important;
+}
+.text-6b6b7b {
+  color: #6b6b7b !important;
+}
+.text-ffd166 {
+  color: #ffd166 !important;
+}
+.text-00332f {
+  color: #00332f !important;
+}
+.text-979797 {
+  color: #979797 !important;
+}
+.text-acaaab {
+  color: #acaaab !important;
+}
+.text-a19fa0 {
+  color: #a19fa0 !important;
+}
+.text-3979d9 {
+  color: #3979d9 !important;
+}
+.text-heading {
+  font-size: 18px !important;
+}
+.text-00332f {
+  color: #00332f;
+}
+.text-black{
+  color: #000000;
+}
+
+.text-subheading {
+  font-size: 14px !important;
+}
+
+.text-subheading-2 {
+  font-size: 12px !important;
+}
+.text-date {
+  font-size: 12px !important;
+  line-height: 14px;
+  color: #b9b9b9;
+}
+.full-width {
+  width: 100%;
+}
+.v-icon__component,
+.v-icon__svg {
+  width: unset;
+}
+.borderradius-0 {
+  border-radius: 0 !important;
+}
+.mt-20{
+  margin-top: 80px !important;
+}
+
+
+.cursor-pointer{
+  cursor :pointer;
+}
+.text-grey {
+  color: #8E8E8E !important;
+}

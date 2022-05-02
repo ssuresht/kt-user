@@ -1,0 +1,32 @@
+.mw-1000{
+    max-width: 1000px;
+    margin: auto;
+}
+.border-radius0{
+    border-radius: 0;
+}
+.desktop-padding{
+    padding-left: 15%;
+    padding-right: 15%;
+}
+input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: none;
+    border: 1px solid #e5e5e5;
+    display: inline-block;
+  background-clip: content-box;
+  border-radius: 50%;
+  padding: 3px;
+}
+input[type="radio"]:checked {
+    background-color: #13aba3;
+    border: 1px solid #13aba3;
+}
+.content-container{
+    max-width: 604px;
+    margin: auto;
+}

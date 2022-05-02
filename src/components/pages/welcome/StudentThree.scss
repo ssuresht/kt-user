@@ -1,0 +1,27 @@
+@media (min-width: 1264px) {
+    .container {
+        max-width: 1000px;
+    }
+}
+
+.sub-subtitle{
+    font-size: inherit;
+}
+.student-three {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5.5px 0;
+}
+.student-img{
+    position: relative;
+    top: 23px;
+}
+
+@media (max-width: 992px) {
+    .student-three{
+        padding: 25px 0;
+    }
+    .student-img{
+        top: 0;
+    }
+}

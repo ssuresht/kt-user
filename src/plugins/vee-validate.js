@@ -123,7 +123,7 @@ extend('verify_password', {
   message: i18n.t('field_verify_password_message'),
   validate: value => {
     var strongRegex = new RegExp(
-      '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$'
+      '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$'
     )
     let length = value.length
     return strongRegex.test(value) && length >= 8 && length <= 20

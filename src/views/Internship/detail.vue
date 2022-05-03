@@ -314,6 +314,10 @@
           </h2>
           <v-card
             class="no-box-shadow px-md-16 px-sm-5 px-5 py-md-9 py-sm-4 py-4"
+            :class="{
+              'font-16px': $vuetify.breakpoint.mdAndUp,
+              'font-14px': $vuetify.breakpoint.smAndDown,
+            }"
           >
             <span
               v-html="getSingleInternship.description_corporate_profile"
@@ -486,7 +490,7 @@ export default {
           component: "LoginModal",
           width: "981px",
           height: "448px",
-        });  
+        });
       } else {
         this.$router.push({ name: "JobApplicationCreate" });
       }

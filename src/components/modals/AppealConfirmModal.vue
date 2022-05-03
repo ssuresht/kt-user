@@ -8,7 +8,7 @@
     </div>
     <div class="d-flex justify-center mt-12">
       <v-btn
-        @click="hideModal"
+        @click="confirmAppeal"
         depressed
         width="352px"
         height="49px"
@@ -19,7 +19,7 @@
       >
     </div>
     <div
-      @click="showAppealModal"
+      @click="hideModal"
       class="text-center text-3979d9 font-14px mt-5 pointer"
     >
       このページから移動しない
@@ -30,20 +30,10 @@
 <script>
 import { mapMutations } from "vuex";
 export default {
-  name: "AppealConfirmDialog",
-  // props: ['self_introduction'],
-  props: {
-   self_introduction: String
- },
- 
- 
+  name: "AppealConfirmDialog", 
   methods: {
-    showAppealModal() {
-      this.$store.commit("showModal", {
-        component: "AppealModal",
-        width: "900px",
-        height: "917",
-      });
+    confirmAppeal() {
+     this.$root.$emit('onAppealModalTrue');
     },
     ...mapMutations(["hideModal"]),
   },

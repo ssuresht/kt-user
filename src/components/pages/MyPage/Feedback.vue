@@ -3,7 +3,11 @@
     <kotonaruModal v-if="kotonaruModal" @closeKotonaruModal="handleModal()" />
     <div v-if="!feedback">
       <div v-if="!kotonaruModal">
-        <Box :applicationHistory="true" v-on:openKotonaruModal="handleModal()">
+        <Box
+          ref="box"
+          :applicationHistory="true"
+          v-on:openKotonaruModal="handleModal()"
+        >
           <template v-slot:hero>
             <Hero />
           </template>
@@ -238,7 +242,7 @@
 
     <div v-else>
       <div v-if="!kotonaruModal">
-        <Box v-on:openKotonaruModal="handleModal()">
+        <Box ref="box" v-on:openKotonaruModal="handleModal()">
           <template v-slot:button-and-text>
             <v-card
               flat
@@ -350,8 +354,8 @@
                     }"
                   >
                     <div
-                      v-for="(boxanswer, index) in box.answer"
-                      :key="index"
+                      v-for="(boxanswer, key) in box.answer"
+                      :key="key"
                       :class="{
                         'py-10': $vuetify.breakpoint.smAndUp,
                         'py-5': $vuetify.breakpoint.xs,
@@ -432,10 +436,9 @@
                           </div>
                         </div>
                       </div>
-
                       <div
                         class="border-card"
-                        v-if="index !== boxanswer.length - 1"
+                        v-if="key < box.answer.length - 1"
                         :class="{
                           'mt-15': $vuetify.breakpoint.smAndUp,
                           'mt-5': $vuetify.breakpoint.xs,
@@ -461,6 +464,8 @@ import CrownMobile from "@/components/other/Crownmobile.vue";
 import LeafImage from "@/components/other/LeafImage.vue";
 import kotonaruModal from "./kotonaruModal.vue";
 import Hero from "./Hero.vue";
+import dayjs from "@/plugins/dayjs";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -476,81 +481,121 @@ export default {
     handleModal() {
       this.kotonaruModal = !this.kotonaruModal;
     },
+    async getData() {
+      await this.$store.dispatch("FEEDBACK_GET");
+    },
+    initializeData() {
+      this.$refs.box.boxData.forEach((data, index) => {
+        const count = index + 1;
+        const superPowerReview =
+          this.getFeedbacks[`super_power_review_${count}`];
+        const growthIdeaReview =
+          this.getFeedbacks[`growth_idea_review_${count}`];
+        data[0] = parseInt(superPowerReview);
+        data[1] = parseInt(growthIdeaReview);
+      });
+      this.boxContent = this.getComments.map((comment) => {
+        const company = comment.company_info;
+        const comments = comment.comments.sort(function (a, b) {
+          let difference = dayjs(a.posted_month, "YYYY-MM").diff(
+            dayjs(b.posted_month, "YYYY-MM"),
+            "month"
+          );
+          if (difference > 0) {
+            return -1;
+          }
+          if (difference < 0) {
+            return 1;
+          }
+          return 0;
+        });
+
+        let answer = [];
+        comments.forEach((element) => {
+          const temp = [
+            {
+              date: dayjs(element.posted_month).format("YYYY年M月"),
+              icon: "crown",
+              text: "評価された力",
+              button: {
+                color: "#AA158B",
+                text: "綿密さ",
+              },
+              content: element.super_power_comment,
+            },
+
+            {
+              icon: "leaf",
+              text: "評価された力",
+              button: {
+                color: "#13ABA3",
+                text: "リーダーシップ",
+              },
+              content: element.growth_idea_comment,
+            },
+          ];
+          answer.push(temp);
+        });
+        return {
+          title: company.name,
+          date: dayjs(comments[0].posted_month).format("YYYY年M月"),
+          show: false,
+          answer,
+        };
+      });
+    },
   },
   data() {
     return {
       kotonaruModal: false,
       feedback: true,
-      boxContent: [
-        {
-          title: "株式会社sample design",
-          date: "2021年3月",
-          show: false,
-          answer: [
-            [
-              {
-                date: "2021年1月",
-                icon: "crown",
-                text: "評価された力",
-                button: {
-                  color: "#AA158B",
-                  text: "綿密さ",
-                },
-                content:
-                  "〇〇さんは、プロジェクトの目的を早い段階で理解し、目的達成のために必要なタスクを洗い出し、誰よりも先んじて行動してくれました。〇〇さんが作成したロードマップやタスク管理表があったことで、チームメンバーは具体的な活動をすることができました。",
-              },
-
-              {
-                icon: "leaf",
-                text: "評価された力",
-                button: {
-                  color: "#13ABA3",
-                  text: "リーダーシップ",
-                },
-                content:
-                  "〇〇さんは、プロジェクトの目的を早い段階で理解し、目的達成のために必要なタスクを洗い出し、誰よりも先んじて行動してくれました。〇〇さんが作成したロードマップやタスク管理表があったことで、チームメンバーは具体的な活動をすることができました。",
-              },
-            ],
-            [
-              {
-                date: "2020年12月",
-                icon: "crown",
-                text: "評価された力",
-                button: {
-                  color: "#13ABA3",
-                  text: "リーダーシップ",
-                },
-                content:
-                  "〇〇さんは、プロジェクトの目的を早い段階で理解し、目的達成のために必要なタスクを洗い出し、誰よりも先んじて行動してくれました。〇〇さんが作成したロードマップやタスク管理表があったことで、チームメンバーは具体的な活動をすることができました。",
-              },
-
-              {
-                icon: "crown",
-                text: "評価された力",
-                button: {
-                  color: "#13ABA3",
-                  text: "リーダーシップ",
-                },
-                content:
-                  "〇〇さんは、プロジェクトの目的を早い段階で理解し、目的達成のために必要なタスクを洗い出し、誰よりも先んじて行動してくれました。〇〇さんが作成したロードマップやタスク管理表があったことで、チームメンバーは具体的な活動をすることができました。",
-              },
-            ],
-          ],
-        },
-        {
-          title: "株式会社Kotonaru",
-          date: "2021年1月",
-          show: false,
-        },
-        {
-          title: "株式会社business",
-          date: "2021年1月",
-          show: false,
-        },
-      ],
+      boxContent: [],
     };
   },
+  async mounted() {
+    await this.getData();
+    this.initializeData();
+  },
   computed: {
+    ...mapGetters(["getFeedbacks", "getComments"]),
+    getCompanyComments() {
+      return this.getComments.map((comment) => {
+        const company = comment.company_info;
+        const comments = comment.comments;
+        let answer = [];
+        comments.forEach((element) => {
+          const temp = [
+            {
+              date: "2021年1月",
+              icon: "crown",
+              text: "評価された力",
+              button: {
+                color: "#AA158B",
+                text: "綿密さ",
+              },
+              content: element.super_power_comment,
+            },
+
+            {
+              icon: "leaf",
+              text: "評価された力",
+              button: {
+                color: "#13ABA3",
+                text: "リーダーシップ",
+              },
+              content: element.growth_idea_comment,
+            },
+          ];
+          answer.push(temp);
+        });
+        return {
+          title: company.name,
+          date: "2021年3月",
+          show: true,
+          answer,
+        };
+      });
+    },
     primaryColor() {
       return "#13ABA3";
     },

@@ -20,7 +20,6 @@
                 :rules="field.rules"
             >
               <v-text-field
-                  autofocus
                   rounded
                   :height="fieldHeight"
                   :error-messages="errors"

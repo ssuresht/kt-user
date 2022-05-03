@@ -90,7 +90,7 @@ export default {
 			this.$store
 				.dispatch("CONTACT_SUBMIT", data)
 				.then(() => {
-					this.$refs.contactForm.reset();
+					//this.$refs.contactForm.reset();
 				})
 				.finally(() => {
 					this.loading = false;

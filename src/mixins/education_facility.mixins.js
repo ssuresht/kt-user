@@ -125,6 +125,7 @@ export default {
       "getStudent",
       "getEducationFacilities",
       "getMasterData",
+      "getApiProcessingStatus"
     ]),
     getFacilities() {
       return this.getEducationFacilities.map((facility) => {

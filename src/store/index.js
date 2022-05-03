@@ -10,6 +10,8 @@ import favourite from "./modules/favourite";
 import history from "./modules/history";
 import applications from "./modules/applications";
 import contact from "./modules/contact";
+import feedback from "./modules/feedback";
+
 Vue.use(Vuex);
 const getDefaultState = () => {
   return {
@@ -65,7 +67,8 @@ const store = new Vuex.Store({
     favourite,
     history,
     applications,
-    contact
+    contact,
+    feedback,
   },
   plugins: [createPersistedState()],
 });

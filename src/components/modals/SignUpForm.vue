@@ -9,7 +9,7 @@
         class="text-center"
         :class="
           $vuetify.breakpoint.mdAndUp
-            ? 'font-30px fw-600 font-Noto-Sans-Medium'
+            ? 'font-30px fw-600 font-Noto-Sans'
             : 'font-16px fw-400'
         "
       >
@@ -143,13 +143,22 @@
                   :error="errors.length !== 0"
                   :hide-details="errors.length <= 0"
                   hide-selected
-                  hide-no-data
+                  :hide-no-data="!field.noDataText"
                   :items="educationalFacilityList"
                   :item-text="field.item_text"
                   :item-value="field.item_value"
                   :placeholder="field.placeholder"
                   v-model="field.value"
-                ></v-autocomplete>
+                >
+                  <template v-slot:no-data>
+                    <div
+                      @click="setAutoCompleteToOther"
+                      class="py-4 full-width pointer"
+                    >
+                      {{ field.noDataText }}
+                    </div>
+                  </template></v-autocomplete
+                >
               </validation-provider>
             </div>
             <div
@@ -163,11 +172,11 @@
               同意して続行を選択することで、私は株式会社Kotonaruの
               <span
                 @click="$router.push({ name: 'TermsofService' })"
-                class="font-12px pointer text-3979d9"
+                class="font-14px pointer text-3979d9"
                 >利用規約 </span
               >、<span
                 @click="$router.push({ name: 'PrivacyPolicy' })"
-                class="font-12px pointer text-3979d9"
+                class="font-14px pointer text-3979d9"
                 >プライバシーポリシー</span
               >に同意し承諾します。
             </div>
@@ -265,8 +274,9 @@ export default {
         {
           label: "学校名",
           name: "educatonal_facility_id",
+          noDataText: "その他",
           type: "facility_autocomplete",
-          placeholder: "その他",
+          placeholder: "入力して表示された候補から選択してください",
           item_text: "name",
           item_value: "id",
           value: null,
@@ -301,7 +311,7 @@ export default {
           label: "卒業予定",
           name: "graduate_year",
           type: "dropdown",
-          placeholder: "卒業予定",
+          placeholder: "年を選択してください",
           item_value: "id",
           item_text: "name",
           items: this.yearList,
@@ -310,10 +320,10 @@ export default {
           rules: "required",
         },
         {
-          label: "卒業予定",
+          label: "",
           name: "graduate_month",
           type: "dropdown",
-          placeholder: "卒業予定",
+          placeholder: "年を選択してください",
           item_value: "id",
           item_text: "name",
           items: this.monthList,
@@ -479,6 +489,13 @@ export default {
           (f) => f.name == "new_educational_facility_type"
         ).not_visible = true;
       }
+    },
+    setAutoCompleteToOther() {
+      this.fields.find((f) => f.name == "educatonal_facility_id").value =
+        "education_facility_none";
+      this.autoCompleteChange(
+        this.fields.find((f) => f.name == "educatonal_facility_id").value
+      );
     },
   },
   watch: {

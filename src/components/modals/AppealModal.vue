@@ -63,23 +63,9 @@ export default {
   },
   async created() {
     this.getDataFromApi();
-  },
-  computed: {
-    ...mapGetters(["user", "getStudent"]),
-  },
 
-  methods: {
-    submitAppeal() {
-    
-        if (this.field.value.length > 0) {
-          // console.log(this.field.value)
-          this.$store.commit("showModal", {
-            component: "AppealConfirmModal",
-            width: "900px",
-            height: "407px",
-          });
-
-          const update_self_introduction = {
+    this.$root.$on('onAppealModalTrue', () => {
+      const update_self_introduction = {
             self_introduction: this.field.value,
           };
 
@@ -95,6 +81,21 @@ export default {
             .catch(() => {
               this.error = this.$t("validation.login.api_error_message");
             });
+    })
+  },
+  computed: {
+    ...mapGetters(["user", "getStudent"]),
+  },
+
+  methods: {
+    submitAppeal() {    
+        if (this.field.value.length > 0) {
+          // console.log(this.field.value)
+          this.$store.commit("showModal", {
+            component: "AppealConfirmModal",
+            width: "900px",
+            height: "407px",
+          });
         }
     },
 

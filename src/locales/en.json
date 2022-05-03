@@ -12,7 +12,7 @@
   "field_must_be_url_message": "This value must be a valid URL",
   "field_allowed_only_en_lange_message": "Only english charactor's are allowed",
   "The given data was invalid.": "The given data was invalid.",
-  "field_verify_password_message": "The password must be at least 8 characters and should be set with a combination of uppercase and lowercase letters, numbers and symbols.",
+  "field_verify_password_message": "The password must be at least 8 characters and should be set with a combination of uppercase and lowercase letters, numbers.",
   "field_required_message_with_field_name": " field is required",
   "views": "views",
   "field_employee_number_message": " is not valid",

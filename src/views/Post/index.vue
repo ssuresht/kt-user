@@ -158,12 +158,12 @@ export default {
       tagSelected: [],
       filters: [
         {
-          title: "新着順",
-          selected: true,
-        },
-        {
           title: "おすすめ順",
           selected: false,
+        },
+          {
+          title: "新着順",
+          selected: true,
         },
         {
           title: "人気順",
@@ -199,14 +199,14 @@ export default {
           this.configuration.page = 1;
           this.$refs.pagination.page = 1;
           switch (item.title) {
-            // new arrival sort by newly created
-            case "新着順": {
-              this.configuration.sort_by = "public_date";
-              break;
-            }
             // sort by the display order
             case "おすすめ順": {
               this.configuration.sort_by = "display_order";
+              break;
+            }
+               // new arrival sort by newly created
+            case "新着順": {
+              this.configuration.sort_by = "public_date";
               break;
             }
             // sort by most views

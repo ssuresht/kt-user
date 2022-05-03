@@ -35,7 +35,7 @@
               class="company-log-box mr-2 d-flex"
               v-if="
                 getSingleInternship.company &&
-                  getSingleInternship.company.logo_img
+                getSingleInternship.company.logo_img
               "
             >
               <img
@@ -129,7 +129,7 @@
               'font-18px': $vuetify.breakpoint.mdAndUp,
             }"
           >
-            {{ user ? user.obfuscate_email : '' }}
+            {{ user ? user.obfuscate_email : "" }}
           </div>
         </div>
       </div>
@@ -199,7 +199,7 @@ export default {
 .company-log-box {
   width: 40px;
   height: 40px;
-  background-color: #f4326d;
+  background-color: #fff;
   border-radius: 3px;
   img {
     max-width: 100%;

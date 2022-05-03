@@ -9,7 +9,7 @@
       :width="$vuetify.breakpoint.smAndDown ? '300px' : '414px'"
     >
       <div
-        class="text-center text-1f2020 font-Roboto-Medium mb-6"
+        class="text-center text-1f2020 font-Noto-Sans fw-600 mb-6"
         :class="$vuetify.breakpoint.smAndDown ? 'font-16px ' : 'font-18px'"
       >
         パスワード再設定
@@ -82,7 +82,7 @@
             <v-btn
               color="primary"
               width="100%"
-              @click="showLogin"
+              @click="resetPassword"
               :height="$vuetify.breakpoint.smAndDown ? '41px' : '58px'"
               class="font-Noto-Sans-Medium"
               :class="
@@ -116,7 +116,7 @@ export default {
   },
   methods: {
     ...mapMutations(["hideModal"]),
-    async showLogin() {
+    async resetPassword() {
       let token = this.$route.query.userPasswordResetToken;
       await this.$store
         .dispatch("AUTH_STUDENT_PASSWORD_RESET", {
@@ -126,15 +126,15 @@ export default {
         .then(() => {
           this.hideModal();
         });
-      // this.$store.dispatch("AUTH_STUDENT_PASSWORD_RESET", { pass: this.password , forgotPasswordToken: this.forgotPasswordToken  }).then(() => {
-      //   this.$store.commit("showModal", {
-      //     component: "SignUpForm",
-      //     width: "900px",
-      //     height: "auto",
-      //     dense: true,
-      //     fullHeight: true,
-      //   });
-      // });
+    },
+    showLogin() {
+      this.hideModal();
+      this.$store.commit("showModal", {
+        component: "LoginModal",
+        width: "981px",
+        height: "448px",
+        dense: true,
+      });
     },
   },
 };

@@ -12,7 +12,7 @@
   "field_must_be_url_message": "有効なURLを指定してください",
   "field_allowed_only_en_lange_message": "ローマ字を入力してください",
   "The given data was invalid.": "入力内容が有効ではありません。",
-  "field_verify_password_message": "パスワードは8文字以上で、英大文字・小文字・数字とシンボルの組み合わせで設定してください。",
+  "field_verify_password_message": "パスワードは半角英大小文字、半角数字を全て含み8文字以上で設定してください。",
   "views": "閲覧数",
   "field_required_message_with_field_name": "は必須項目です。",
   "field_enter_half_width_numbers_hyphens": "半角の数字とハイフンを使用し入力してください",

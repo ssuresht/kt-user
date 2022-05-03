@@ -175,8 +175,19 @@
               'font-14px mx-3 pt-5': $vuetify.breakpoint.smAndDown,
               'font-16px': $vuetify.breakpoint.mdAndUp,
             }"
-              v-html="getStudent.self_introduction"
-          ></div>
+          >
+            <v-textarea
+                  class="text-area"
+                  height="200px"
+                  hide-details
+                  outlined
+                  dense
+                  placeholder="メモ"
+                  v-model="getStudent.self_introduction"
+                  :readonly="true"
+                >
+                </v-textarea>
+          </div>
         </v-col>
         <v-col
             v-if="$vuetify.breakpoint.mdAndUp"
@@ -355,14 +366,18 @@ export default {
       return this.$vuetify.breakpoint.smAndDown ? "144px" : "129px";
     },
   },
-  created() {
+ async created() {
     this.getDataFromApi();
+      if (this.$route.query.token) {
+      let token = this.$route.query.token;
+       await this.$store.dispatch("EMAIL_CHANGE_TOKEN", { token })
+    }
   },
   data() {
     return {
       basicInformationTitle: "基本情報",
       wordOfAppealTitle: "一言アピール",
-      emailAddressTitle: "",
+      emailAddressTitle: "メールアドレス",
       passwordTitle: "パスワード",
     };
   },

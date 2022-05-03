@@ -1,4 +1,4 @@
-import axios from '@/services/api'
+import $axios from '@/services/api'
 
 import {
   STUDENT_REQUEST,
@@ -11,9 +11,11 @@ import {
   STUDENT_DELETE_SUCCESS,
   GET_EDUCATION__FACILITY_DATA,
   FACILITIES_CREATE,
-  STUDENT_PASSWORD_UPDATE
+  STUDENT_PASSWORD_UPDATE,
+  EMAIL_CHANGE_TOKEN
 } from '@/store/actions/student'
-
+import router from '@/router/index.js'
+import axios from "@/services/api";
 function initialState() {
   return {
     status: '',
@@ -150,7 +152,29 @@ const actions = {
         })
     })
   },
+  [EMAIL_CHANGE_TOKEN]: ({ commit, dispatch }, params) => {
+    return new Promise((resolve, reject) => {   
+      dispatch('API_PROCESSING', true, { root: true })
+      $axios
+        .post(`/student/email-request-token-check`, params)
+        .then(resp => {
+          const user = resp.data
+          commit('AUTH_USER_TO_SIGN_UP', { user })
+          resolve(resp)
+        })
+        .catch(err => {
+          if (err.status == 400) {
+           router.replace({'query': null});
+          }
+          commit('AUTH_ERROR')
+          reject(err)
 
+        })
+        .finally(() => {
+          dispatch('API_PROCESSING', false, { root: true })
+        })
+    })
+  },
   
 }
  

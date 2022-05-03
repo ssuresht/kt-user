@@ -9,6 +9,8 @@
           <basic-information-input class="mt-14" :fields="fields" />
           <div class="d-flex justify-center mt-6">
             <v-btn
+              :disabled="getApiProcessingStatus"
+              :loading="getApiProcessingStatus"
               depressed
               color="primary"
               rounded
@@ -34,7 +36,6 @@ export default {
     BasicInformationInput,
   },
   mixins: [EducationFacility],
-
 };
 </script>
 

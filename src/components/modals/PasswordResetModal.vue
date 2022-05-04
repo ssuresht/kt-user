@@ -22,7 +22,7 @@
         半角英大小文字、半角数字を全て含み8文字以上入力して下さい。
       </div>
       <validation-observer
-        ref="basicInformationInput"
+        ref="observer"
         class="full-width d-flex justify-center"
         :class="$vuetify.breakpoint.smAndDown ? 'mt-6 mb-4' : 'my-6'"
       >
@@ -34,7 +34,8 @@
             <validation-provider
               v-slot="{ errors }"
               name="パスワード"
-              rules="required:パスワード|only_english_lang_allowed"
+              vid="confirmation"
+              rules="required:パスワード|only_english_lang_allowed|verify_password"
             >
               <v-text-field
                 rounded
@@ -58,8 +59,7 @@
             <validation-provider
               v-slot="{ errors }"
               name="パスワード"
-              vid="confirmation"
-              rules="required:パスワード|password_confirmed:confirmation"
+              rules="required|password_confirmed:confirmation"
             >
               <v-text-field
                 rounded
@@ -117,6 +117,11 @@ export default {
   methods: {
     ...mapMutations(["hideModal"]),
     async resetPassword() {
+      this.$refs.observer.validate().then((valid) => {
+        if (!valid) {
+          return;
+        }
+      });
       let token = this.$route.query.userPasswordResetToken;
       await this.$store
         .dispatch("AUTH_STUDENT_PASSWORD_RESET", {

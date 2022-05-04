@@ -9,7 +9,7 @@
       :width="$vuetify.breakpoint.smAndDown ? '300px' : '352px'"
     >
       <div
-        class="text-center text-1f2020 font-Roboto-Medium"
+        class="text-center text-1f2020 fw-600 NotoSansJP-Medium"
         :class="
           $vuetify.breakpoint.smAndDown ? 'font-16px mb-4' : 'font-18px mb-6'
         "
@@ -99,27 +99,24 @@ export default {
         dense: true,
       });
     },
-    
-    submit (email) {
-      
-      console.log(email)
-      this.$store
-          .dispatch('AUTH_RESET', { email })
-          .then(() => {
-            this.hideModal();
-            this.$store.commit("showModal", {
-              component: "SignUpForm", 
-              width: "900px",
-              height: "auto",
-              dense: true,
-              fullHeight: true,
-            });
-          })
-          .catch((err) => {
-            this.error = err.data.errors.email_invalid[0];
-          });
-    }
 
+    submit(email) {
+      this.$store
+        .dispatch("AUTH_RESET", { email })
+        .then(() => {
+          this.hideModal();
+          this.$store.commit("showModal", {
+            component: "SignUpForm",
+            width: "900px",
+            height: "auto",
+            dense: true,
+            fullHeight: true,
+          });
+        })
+        .catch((err) => {
+          this.error = err.data.errors.email_invalid[0];
+        });
+    },
   },
 };
 </script>

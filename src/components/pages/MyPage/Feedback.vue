@@ -39,7 +39,7 @@
                     class="text-fff font-Noto-Sans-Bold borderradius-5"
                     :height="buttonHeight"
                     :width="buttonWidth"
-                    :color="primaryColor"
+                    color="#13ABA3"
                     :class="{
                       'font-14px': $vuetify.breakpoint.smAndUp,
                       'font-12px': $vuetify.breakpoint.xs,
@@ -98,7 +98,7 @@
               flat
               class="mt-5"
               :class="{
-                'py-15 px-20 ': $vuetify.breakpoint.smAndUp,
+                'py-5 px-20 ': $vuetify.breakpoint.smAndUp,
                 'py-8 px-3 ': $vuetify.breakpoint.xs,
               }"
             >
@@ -139,7 +139,7 @@
                 <div
                   class=""
                   :class="{
-                    'py-15': $vuetify.breakpoint.smAndUp,
+                    'py-5': $vuetify.breakpoint.smAndUp,
                     'py-4': $vuetify.breakpoint.xs,
                   }"
                 >
@@ -179,7 +179,7 @@
                         class="text-fff font-Noto-Sans-Bold borderradius-5"
                         :height="buttonHeight"
                         :width="buttonWidth"
-                        :color="primaryColor"
+                        color="#13ABA3"
                         :class="{
                           'font-14px': $vuetify.breakpoint.smAndUp,
                           'font-12px': $vuetify.breakpoint.xs,
@@ -217,7 +217,7 @@
                         class="text-fff font-Noto-Sans-Bold borderradius-5"
                         :height="buttonHeight"
                         :width="buttonWidth"
-                        color="#aa158b"
+                        color="#AA158B"
                         :class="{
                           'font-14px': $vuetify.breakpoint.smAndUp,
                           'font-12px': $vuetify.breakpoint.xs,
@@ -357,8 +357,8 @@
                       v-for="(boxanswer, key) in box.answer"
                       :key="key"
                       :class="{
-                        'py-10': $vuetify.breakpoint.smAndUp,
-                        'py-5': $vuetify.breakpoint.xs,
+                        'py-5': $vuetify.breakpoint.smAndUp,
+                        'pb-5': $vuetify.breakpoint.xs,
                       }"
                     >
                       <div
@@ -440,7 +440,7 @@
                         class="border-card"
                         v-if="key < box.answer.length - 1"
                         :class="{
-                          'mt-15': $vuetify.breakpoint.smAndUp,
+                          'mt-10': $vuetify.breakpoint.smAndUp,
                           'mt-5': $vuetify.breakpoint.xs,
                         }"
                       ></div>
@@ -518,18 +518,18 @@ export default {
               icon: "crown",
               text: "評価された力",
               button: {
-                color: "#AA158B",
-                text: "綿密さ",
+                color: "#13ABA3",
+                text: "リーダーシップ",
               },
               content: element.super_power_comment,
             },
 
             {
               icon: "leaf",
-              text: "評価された力",
+              text: "期待したい力",
               button: {
-                color: "#13ABA3",
-                text: "リーダーシップ",
+                color: "#AA158B",
+                text: "綿密さ",
               },
               content: element.growth_idea_comment,
             },
@@ -570,18 +570,18 @@ export default {
               icon: "crown",
               text: "評価された力",
               button: {
-                color: "#AA158B",
-                text: "綿密さ",
+                color: "#13ABA3",
+                text: "リーダーシップ",
               },
               content: element.super_power_comment,
             },
 
             {
               icon: "leaf",
-              text: "評価された力",
+              text: "期待したい力",
               button: {
-                color: "#13ABA3",
-                text: "リーダーシップ",
+                color: "#AA158B",
+                text: "綿密さ",
               },
               content: element.growth_idea_comment,
             },

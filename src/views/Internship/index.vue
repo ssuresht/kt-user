@@ -276,7 +276,7 @@
         <span class="font-16px fw-400 font-Noto-Sans">件</span>
       </div>
     </v-card>
-    <template v-if="loading">
+    <template v-if="loading && apiProcessing">
       <v-row justify="center" class="py-10">
         <v-col cols="auto">
           <v-progress-circular
@@ -329,22 +329,37 @@ export default {
   data() {
     return {
       loading: false,
+      apiProcessing: false,
       page: 1,
-      sortBy: "favorites_count",
-      sortByOrder: "desc",
+      sortBy: "display_order",
+      sortByOrder: "asc",
       internshipStatusFilter: false,
       searchQuery: null,
       categories: [],
       filters: [
         {
+          title: "おすすめ順",
+          sort_by: "display_order",
+          selected: true,
+          sort_by_order:"asc"
+        },
+        {
+          title: "新着順",
+          sort_by: "public_date",
+          selected: false,
+          sort_by_order:"desc"
+        },
+        {
           title: "お気に入りが多い順",
           sort_by: "favorites_count",
-          selected: true,
+          selected: false,
+          sort_by_order:"desc"
         },
         {
           title: "応募者が多い順",
           sort_by: "applications_count",
           selected: false,
+          sort_by_order:"desc"
         },
       ],
     };
@@ -418,6 +433,7 @@ export default {
           : [],
       },
     ];
+    this.apiProcessing = this.$store.state.apiProcessing;
     this.getDataFromApi();
     let this_this = this;
     this.$root.$on("PaginatePageNumber", function (event) {
@@ -535,8 +551,9 @@ export default {
       });
     },
     updateFilter(item) {
+      console.log(item.sort_by_order);
       this.sortBy = item.sort_by;
-      this.sortByOrder = "desc";
+      this.sortByOrder = item.sort_by_order;
       this.getDataFromApi();
 
       this.filters.forEach((filter) => {

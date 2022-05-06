@@ -19,7 +19,7 @@
       >
     </div>
     <div
-      @click="hideModal"
+      @click="showAppealModal"
       class="text-center text-3979d9 font-14px mt-5 pointer"
     >
       このページから移動しない
@@ -28,14 +28,21 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
 export default {
-  name: "AppealConfirmDialog", 
+  name: "AppealConfirmDialog",
   methods: {
     confirmAppeal() {
-     this.$root.$emit('onAppealModalTrue');
+      localStorage.removeItem("tempChangedFieldValue");
+      this.$store.commit("hideModal");
     },
-    ...mapMutations(["hideModal"]),
+    showAppealModal() {
+      this.$store.commit("showModal", {
+        component: "AppealModal",
+        width: "900px",
+        height: "917px",
+        dense: true,
+      });
+    },
   },
 };
 </script>

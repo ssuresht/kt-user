@@ -7,12 +7,15 @@ import {
   STUDENT_GET,
   STUDENT_GET_SUCCESS,
   STUDENT_UPDATE,
+  STUDENT_UPDATE_EMAIL,
   STUDENT_UPDATE_SUCCESS,
   STUDENT_DELETE_SUCCESS,
   GET_EDUCATION__FACILITY_DATA,
   FACILITIES_CREATE,
   STUDENT_PASSWORD_UPDATE,
-  EMAIL_CHANGE_TOKEN
+  EMAIL_CHANGE_TOKEN,
+  STUDENT_UPDATE_MEMBERSHIP,
+  STUDENT_UPDATE_MEMBERSHIP_SUCCESS
 } from '@/store/actions/student'
 import router from '@/router/index.js'
 import axios from "@/services/api";
@@ -76,8 +79,29 @@ const actions = {
   },
 
 
-  [STUDENT_UPDATE]: ({ commit, dispatch }, params) => {
+  [STUDENT_UPDATE_EMAIL]:  ({ commit, dispatch }, params) => {
     return new Promise((resolve, reject) => {
+      dispatch('API_PROCESSING', true, { root: true })
+      commit('STUDENT_REQUEST')
+      axios
+        .post(`student/send-email-change-request-token/${params.id}`, params.param)
+        .then(response => {
+          let data = response.data.data
+          commit('STUDENT_UPDATE_SUCCESS', { data })
+
+          resolve(response)
+        })
+        .catch(err => {
+          reject(err)
+        })
+        .finally(() => {
+          dispatch('API_PROCESSING', false, { root: true })
+        })
+    })
+  },
+   [STUDENT_UPDATE]: ({ commit, dispatch }, params) => {
+    return new Promise((resolve, reject) => {
+      console.log(params)
       dispatch('API_PROCESSING', true, { root: true })
       commit('STUDENT_REQUEST')
       axios
@@ -175,6 +199,27 @@ const actions = {
         })
     })
   },
+
+  [STUDENT_UPDATE_MEMBERSHIP]: ({ commit, dispatch }, params) => {
+    return new Promise((resolve, reject) => {
+      dispatch('API_PROCESSING', true, { root: true })
+      commit('STUDENT_REQUEST')
+      axios
+        .put(`student/update-membership/${params.userId}`, params)
+        .then(response => {
+          let data = response.data.data
+          commit('STUDENT_UPDATE_MEMBERSHIP_SUCCESS', { data })
+
+          resolve(response)
+        })
+        .catch(err => {
+          reject(err)
+        })
+        .finally(() => {
+          dispatch('API_PROCESSING', false, { root: true })
+        })
+    })
+  },
   
 }
  
@@ -195,6 +240,10 @@ const mutations = {
 
 
   [STUDENT_UPDATE_SUCCESS]: state => {
+    state.status = 'success'
+  },
+
+  [STUDENT_UPDATE_MEMBERSHIP_SUCCESS]: state => {
     state.status = 'success'
   },
 

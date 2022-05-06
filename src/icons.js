@@ -35,6 +35,8 @@ import DetailLoveIcon from '@/components/Icons/DetailLoveIcon.vue'
 import ShareIcon from '@/components/Icons/ShareIcon.vue'
 import SmallShareIcon from '@/components/Icons/SmallShareIcon.vue'
 import MediumShareIcon from '@/components/Icons/MediumShareIcon.vue'
+import ApprovedIcon from '@/components/Icons/ApprovedIcon.vue'
+import UnapprovedIcon from '@/components/Icons/UnapprovedIcon.vue'
 export default {
   MediumShareIcon: {
     component: MediumShareIcon
@@ -148,4 +150,10 @@ export default {
   warningIcon: {
     component: WarningIcon,
   },
+  approvalIcon: {
+    component: ApprovedIcon,
+  },
+  UnapprovedIcon: {
+    component: UnapprovedIcon,
+  }
 };

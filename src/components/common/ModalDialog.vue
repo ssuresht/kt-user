@@ -18,8 +18,8 @@
         class="justify-end px-8"
         :class="[$vuetify.breakpoint.mdAndDown ? 'pt-4' : 'pt-9']"
       >
-        <v-btn icon dark right @click="hideModal">
-          <v-icon small right>$close</v-icon>
+        <v-btn icon dark right @click="hideModalDialog(component)">
+          <v-icon small right  >$close</v-icon>
         </v-btn>
       </v-card-title>
       <component v-if="getModalDense" :is="component"></component>
@@ -66,6 +66,22 @@ export default {
   },
   methods: {
     ...mapMutations(["hideModal"]),
+    hideModalDialog(component){
+      console.log('hideModalDialog',component);
+      if(component == "AppealModal" && localStorage.getItem("tempChangedFieldValue")){
+        this.$store.commit("showModal", {
+            component: "AppealConfirmModal",
+            width: "900px",
+            height: "auto",
+            dense: true,
+            fullHeight: true,
+          });
+      }
+      else{
+        localStorage.removeItem("tempChangedFieldValue");
+        this.hideModal()
+      }
+    }
   },
 };
 </script>

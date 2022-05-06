@@ -466,8 +466,14 @@ export default {
   methods: {
     getDataFromApi() {
       this.loading = true;
+      let data  = { id: this.$route.params.id };
+      
+      if (this.$route.query.preview) {
+        data.preview = this.$route.query.preview
+      }
+
       this.$store
-        .dispatch("INTERNSHIP_GET", { id: this.$route.params.id })
+        .dispatch("INTERNSHIP_GET", data)
         .then(() => {
           this.loading = false;
           this.isFavaourited = this.getSingleInternship?.is_favourite;

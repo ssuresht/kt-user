@@ -86,6 +86,9 @@ const routes = [
     path: "/withdrawal",
     name: "Withdrawal",
     component: () => import("@/views/Withdrawal/Withdrawal.vue"),
+    meta: {
+      loginRequired: true,
+    }
   },
   {
     path: "/contact",

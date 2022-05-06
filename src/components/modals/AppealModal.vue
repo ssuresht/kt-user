@@ -20,6 +20,8 @@
           outlined
           :placeholder="field.placeholder"
           v-model="field.value"
+        @change="storeFieldValue(field.value)"
+
         ></v-textarea>
         <div class="mb-1 mt-n1 text-left font-12px" v-if="error">
           <FlashMessage :error="error" />
@@ -64,39 +66,35 @@ export default {
   async created() {
     this.getDataFromApi();
 
-    this.$root.$on('onAppealModalTrue', () => {
-      const update_self_introduction = {
-            self_introduction: this.field.value,
-          };
-
-          this.$store
-            .dispatch("STUDENT_UPDATE", {
-              id: this.user.id,
-              param: update_self_introduction,
-            })
-            .then(() => {
-              this.$root.$emit("refresh-profile-data");
-              this.hideModal();
-            })
-            .catch(() => {
-              this.error = this.$t("validation.login.api_error_message");
-            });
-    })
   },
   computed: {
     ...mapGetters(["user", "getStudent"]),
   },
 
   methods: {
-    submitAppeal() {    
-        if (this.field.value.length > 0) {
-          // console.log(this.field.value)
-          this.$store.commit("showModal", {
-            component: "AppealConfirmModal",
-            width: "900px",
-            height: "407px",
+     storeFieldValue(value){
+      localStorage.setItem('tempChangedFieldValue', value);
+    },
+    submitAppeal() {
+      if (this.field.value.length > 0) {
+        const update_self_introduction = {
+          self_introduction: this.field.value,
+        };
+
+        this.$store
+          .dispatch("STUDENT_UPDATE", {
+            id: this.user.id,
+            param: update_self_introduction,
+          })
+          .then(() => {
+          localStorage.removeItem('tempChangedFieldValue');
+            this.$root.$emit("refresh-profile-data");
+            this.hideModal();
+          })
+          .catch(() => {
+            this.error = this.$t("validation.login.api_error_message");
           });
-        }
+      }
     },
 
     async getDataFromApi() {
@@ -108,9 +106,14 @@ export default {
         .finally(() => (this.loading = false));
     },
     getModalFields() {
-      this.field.value = this.getStudent[this.field.name] || "";
+       if(localStorage.getItem("tempChangedFieldValue") === null){
+        this.field.value = this.getStudent[this.field.name] || '';
+      }
+      else{
+        this.field.value = localStorage.getItem("tempChangedFieldValue")
+      }
     },
-    ...mapMutations(["hideModal"]),
+    ...mapMutations(["hideModal", "onAppealModalTrue"]),
   },
 };
 </script>

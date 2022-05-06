@@ -49,10 +49,10 @@
 					>
 						退会理由
 					</div>
-
-					<form @submit.prevent="handleForm" class="mt-5">
+				
+					<form class="mt-5">
 						<div class="input-group d-flex" :class="{'align-center': $vuetify.breakpoint.smAndUp}">
-							<input type="radio" id="option-1" name="withdrawal_reason"/>
+							<input v-model="reason" type="radio" id="option-1" name="withdrawal_reason" value="就職先が決まった" />
 							<label
 								for="option-1"
 								class="ml-2"
@@ -65,7 +65,7 @@
 						</div>
 
 						<div class="input-group d-flex mt-3" :class="{'align-center': $vuetify.breakpoint.smAndUp}">
-							<input type="radio" id="option-2" name="withdrawal_reason"/>
+							<input v-model="reason" type="radio" id="option-2" name="withdrawal_reason" value="自分に合うインターン情報が無かった"/>
 							<label
 								for="option-2"
 								class="ml-2"
@@ -78,7 +78,7 @@
 						</div>
 
 						<div class="input-group d-flex mt-3" :class="{'align-center': $vuetify.breakpoint.smAndUp}">
-							<input type="radio" id="option-3" name="withdrawal_reason" />
+							<input v-model="reason" type="radio" id="option-3" name="withdrawal_reason" value="忙しくなり、インターンに参加できなくなった" />
 							<label
 								for="option-3"
 								class="ml-2"
@@ -91,7 +91,7 @@
 						</div>
 
 						<div class="input-group d-flex mt-3" :class="{'align-center': $vuetify.breakpoint.smAndUp}">
-							<input type="radio" id="option-4" name="withdrawal_reason"/>
+							<input v-model="reason" type="radio" id="option-4" name="withdrawal_reason" value="オンラインインターンシップに参加する必要がなくなった"/>
 							<label
 								for="option-4"
 								class="ml-2"
@@ -104,7 +104,7 @@
 						</div>
 
 						<div class="input-group d-flex mt-3" :class="{'align-center': $vuetify.breakpoint.smAndUp}">
-							<input type="radio" id="option-5" name="withdrawal_reason"/>
+							<input v-model="reason" type="radio" id="option-5" name="withdrawal_reason" value="オンラインインターンシップへの興味がなくなった"/>
 							<label
 								for="option-5"
 								class="ml-2"
@@ -117,7 +117,7 @@
 						</div>
 
 						<div class="input-group d-flex mt-3" :class="{'align-center': $vuetify.breakpoint.smAndUp}">
-							<input type="radio" id="option-6" name="withdrawal_reason"/>
+							<input v-model="reason" type="radio" id="option-6" name="withdrawal_reason" value="その他"/>
 							<label
 								for="option-6"
 								class="ml-2"
@@ -147,18 +147,17 @@
 									>戻る</v-btn
 								>
 								<v-btn
+									:disabled="reason == ''"
 									color="#13aba3"
 									class="text-fff" :class="{'flex-column-reverse mb-4': $vuetify.breakpoint.smAndDown, 'ml-8': $vuetify.breakpoint.mdAndUp}"
 									:width="buttonWidth"
 									:height="buttonHeight"
+									@click="updateMembership"
 									>退会</v-btn
 								>
                                 </div>
 							</div>
-
-							
 						</div>
-
 					</form>
 					</div>
 				</v-card>
@@ -168,11 +167,30 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
+	name: "withdrawal",
+	data() {
+		return {
+			reason: "",
+		};
+	},
 	methods:{
-		handleForm(){}
+		updateMembership() {
+			console.log(this.reason);
+			let data = {};
+			data.userId = this.user.id;
+			data['status'] = 3;
+			data['reason'] = this.reason;
+			this.$store.dispatch("STUDENT_UPDATE_MEMBERSHIP", data).then(response => {
+				if (response.status === 200) {
+					this.$store.dispatch("AUTH_LOGOUT").finally(() => (this.loading = false));
+				}
+			})
+		}
 	},
 	computed: {
+		...mapGetters(["user"]),
 		buttonWidth() {
 			return this.$vuetify.breakpoint.smAndUp ? "286px" : "300px";
 		},

@@ -44,7 +44,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       dispatch("API_PROCESSING", true, { root: true });
       axios
-        .get(`/student/internship-post/${params.id}`)
+        .get(`/student/internship-post/${params.id}`, { params })
         .then((response) => {
           commit("INTERNSHIP_GET_SUCCESS", response.data);
 

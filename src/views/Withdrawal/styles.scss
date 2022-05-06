@@ -30,3 +30,5 @@ input[type="radio"]:checked {
     max-width: 604px;
     margin: auto;
 }
+
+.theme--light.v-btn.v-btn--disabled.v-btn--has-bg.text-fff{background-color: rgb(19, 171, 163) !important; border-color: rgb(19, 171, 163) !important;color: #fff !important;}

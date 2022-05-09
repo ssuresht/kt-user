@@ -59,7 +59,7 @@ const routes = [
     },
   },
   {
-    path: "/internship-detail/:id",
+    path: "/internship-detail/:id/:title",
     name: "InternshipDetails",
     component: () => import("@/views/Internship/detail.vue"),
     meta: {

@@ -3,15 +3,15 @@
     class="full-width"
     :width="$vuetify.breakpoint.mdAndDown ? '340px' : '410px'"
     @click.stop="
-      $router.push({ name: 'InternshipDetails', params: { id: internship.id } })
+      $router.push({ name: 'InternshipDetails', params: { id: internship.id, title: internship.title } })
     "
   >
     <div class="position-relative company-image border-12">
       <v-img
         width="100%"
         height="190px"
-        :lazy-src="internship.seo_featured_image"
-        :src="internship.seo_featured_image"
+        :lazy-src="internship.seo_featured_image_thumbnail"
+        :src="internship.seo_featured_image_thumbnail"
       >
       </v-img>
       <!-- add to favorites -->

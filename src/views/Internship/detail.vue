@@ -466,7 +466,10 @@ export default {
   methods: {
     getDataFromApi() {
       this.loading = true;
-      let data  = { id: this.$route.params.id };
+      let data  = { 
+        id: this.$route.params.id, 
+        title: this.$route.params.title 
+      };
       
       if (this.$route.query.preview) {
         data.preview = this.$route.query.preview

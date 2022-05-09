@@ -78,8 +78,8 @@
               class="position-absolute carousel-item-image"
               :style="{
                 backgroundImage: `url(${
-                  item.seo_featured_image
-                    ? item.seo_featured_image
+                  item.seo_featured_image_thumbnail
+                    ? item.seo_featured_image_thumbnail
                     : '/img/carousel-img.png'
                 })`,
               }"

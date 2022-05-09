@@ -85,7 +85,7 @@ export default {
         })
         .then(() => {
             this.$store.commit("showModal", {
-              component: "EmailVerificationModal",
+              component: "EmailChangeModal",
               width: "981px",
               height: "auto",
               dense: true,

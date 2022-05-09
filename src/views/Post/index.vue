@@ -181,7 +181,7 @@ export default {
       return this.getAllMediaList.map((media) => {
         return {
           id: media.id,
-          img: media.seo_featured_image ?? "/img/post-3.png",
+          img: media.seo_featured_image_thumbnail ?? "/img/post-3.png",
           title: media.title,
           tags: media.media_tags,
         };
